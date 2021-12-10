@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import getModel from './objectModel';
-import { camelCase, get, zip, groupBy } from 'lodash';
+import { camelCase, get, zip, groupBy, keyBy } from 'lodash';
 export interface ModelEntries {
   key?:       string;
   parent?:    string;
@@ -26,7 +26,7 @@ export class DataModelService {
     this.name = name;
     this.data = data;
     this.parsedList = getModel(name, data);
-    this.keyedList = groupBy(this.parsedList, 'key');
+    this.keyedList = keyBy(this.parsedList, 'key');
     this.groupedList = groupBy(this.parsedList, 'parent');
     this.modelRoot = this.groupedList[name];
   }
@@ -55,7 +55,7 @@ export class DataModelService {
     } ;
     const grouped= this.groupedList[key];
     return {
-      keyed,
+      ...keyed,
       grouped
       //  ...(keyDef?.)
     };

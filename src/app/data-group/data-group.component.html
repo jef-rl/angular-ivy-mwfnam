@@ -1,5 +1,5 @@
-<div>group - {{ _?.keyed?.key }}</div>
-<div>
+<div class="start"></div><div *ngFor="let i of ' '.repeat(_.level).split('')"> </div> <div>G - {{ _?.key }}</div>
+<div class="group">
   <div *ngFor="let entry of _?.grouped; let fieldIndex = index">
     <ng-container *ngIf="entry?.formType === 'control'"
       ><app-data-control [key]="entry?.key"></app-data-control

@@ -1,0 +1,11 @@
+:host  {
+  display: grid;
+  grid-auto-columns: auto;
+
+}
+.start {
+  grid-column: 1
+}
+.to-end {
+  grid-column : auto / -1
+}

@@ -4,7 +4,7 @@ import { getKind } from './getKind';
 import { ModelEntries } from './data-model.service';
 
 
-const modelGroup = (parent, obj) => {
+const modelGroup = (level,parent, obj) => {
   const keys = Object.keys(obj);
 
   return keys.reduce((prev, field) => {
@@ -18,24 +18,24 @@ const modelGroup = (parent, obj) => {
     if(kind==='array') {
       const entries = property && property[0] ? getKind(property[0]) : 'undefined';
       if(entries!=='object' && entries!=='array') {
-        return [...prev,{key,parent,formType:kind,entryType:'control',valueType:entries,fieldName:field}]
+        return [...prev,{level,key,parent,formType:kind,entryType:'control',valueType:entries,fieldName:field}]
       } else if(entries==='array') {
-        return [...prev,{key,parent,formType:'error',field,state:'ERROR CANT HAVE ARRAY INSIDE AN ARRAY'}]
+        return [...prev,{level,key,parent,formType:'error',field,state:'ERROR CANT HAVE ARRAY INSIDE AN ARRAY'}]
       }
-      const itemModel = modelGroup(key,property[0])
-      return [...prev,{key,parent,formType:kind,entryType:'group',valueType:key,fieldName:field},...itemModel] 
+      const itemModel = modelGroup(level+1,key,property[0])
+      return [...prev,{level,key,parent,formType:kind,entryType:'group',valueType:key,fieldName:field},...itemModel] 
     } else if (kind==='object') {
-      const objectModel = modelGroup(key,property)
-      return [...prev,{key,parent,formType:'group',valueType:key, fieldName:field},...objectModel] 
+      const objectModel = modelGroup(level+1,key,property)
+      return [...prev,{level,key,parent,formType:'group',valueType:key, fieldName:field},...objectModel] 
     } else {
-      return [...prev,{key,parent,formType:'control',valueType:kind,fieldName:field} ]
+      return [...prev,{level,key,parent,formType:'control',valueType:kind,fieldName:field} ]
     }
   }, []);
 };
 
 const getModel = (modelRootName,modelPrototype):ModelEntries[] => {
   if (!Array.isArray(modelPrototype) && typeof modelPrototype === 'object') {
-    const model = modelGroup(modelRootName, modelPrototype);
+    const model = modelGroup(1,modelRootName, modelPrototype);
     
     return model
     // .map((x) => ({

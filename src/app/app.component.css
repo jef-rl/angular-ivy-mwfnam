@@ -1,19 +1,5 @@
-p {
-  font-family: Lato;
-}
+
 :host {
   display: grid;
   max-height: 100vh;
-  overflow: hidden;
-  grid-template-columns: auto 1fr;
-}
-div {
-  max-height: 100vh;
-  overflow: auto;
-  grid-column: 1;
-}
-pre {
-  max-height: 100vh;
-  overflow: auto;
-  grid-column: 2
 }

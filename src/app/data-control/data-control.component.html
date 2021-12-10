@@ -1,4 +1,4 @@
-<div>control - {{ _?.keyed?.key }}</div>
+<div class="start"></div><div class="indent" *ngFor="let i of ' '.repeat(_.level).split('');let i=index" [style.gridRowStart]="i+2"> </div> <div  [style.gridRowStart]="_.level+4" class="to-end"> C - {{ _?.key }} {{_ | json }}</div>
 <div>
 <!-- <div class="edit ico" (click)="removeField(fieldIndex)">
 close
