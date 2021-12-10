@@ -1,0 +1,61 @@
+<!-- <div class="fields row hdr">
+<div class="edit">
+  <div class="lbl"></div>
+</div>
+<div class="edit">
+  <div class="lbl">Field</div>
+</div>
+<div class="edit">
+  <div class="lbl">Type</div>
+</div>
+<div class="edit">
+  <div class="lbl">Control</div>
+</div>
+
+<div class="edit">
+  <div class="lbl">Label</div>
+</div>
+<div class="edit">
+  <div class="lbl">Options</div>
+</div>
+</div>
+<div class="fields row id">
+<div class="head">
+  <div class="lbl"></div>
+</div>
+<div class="head">
+  <div class="lbl">id</div>
+</div>
+
+<div class="head">
+  <div class="lbl">uid</div>
+</div>
+<div class="head">
+  <div class="lbl"></div>
+</div>
+<div class="head">
+  <div class="lbl">ID</div>
+</div>
+</div>
+<div
+class="field-list"
+cdkDropList
+[cdkDropListData]="fields.value"
+(cdkDropListDropped)="drop($event)"
+>
+<ng-container formArrayName="fields">
+
+</ng-container>
+<div class="fields row action" *ngIf="fields.errors">
+  <div class="edit ico disabled warn"><div>warning</div><div>warning</div></div>
+  <div class="error">
+    <div class="lbl">
+      {{fields?.errors.duplicate ? 'Fieldname is required to be
+      unique' : 'Fieldname is required'}}
+    </div>
+  </div>
+</div>
+<div class="fields row action" *ngIf="!fields.errors">
+  <div class="edit ico" (click)="addField()">add</div>
+</div>
+</div> -->
