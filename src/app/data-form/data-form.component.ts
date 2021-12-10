@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { camelCase, get, zip, groupBy } from 'lodash';
+import { DataModelService } from '../data-model.service';
 import getModel from '../objectModel';
 
 @Component({
@@ -10,19 +11,13 @@ import getModel from '../objectModel';
 export class DataFormComponent implements OnInit {
   @Input() data;
   @Input() name;
-  objectKeysList: any;
-  objectGroupList: string[];
-  objectDisplay: any;
-  objectModelList: any;
-  objectKeyedList: any;
-  modelRoot: any;
-  constructor() {}
+  @Output() valueChanged = new EventEmitter()
+  constructor(private dataService:DataModelService) {
+    
+  }
   // rivate fb: FormBuilder) {
   ngOnInit() {
-    this.objectModelList = getModel(this.name, this.data);
-    this.objectKeyedList = groupBy(this.objectModelList, 'key');
-    this.objectGroupList = groupBy(this.objectModelList, 'parent');
-    this.modelRoot = this.objectGroupList[this.name];
+    this.dataService.initModel(this.name,this.data);
     // const model = this.objectKeysList;
     // const maxes = [0,1,2,3,4,5].map(i=> model.reduce((max,field)=> (field && field[i] && field[i].length>max ? field[i].length+2 : max),0))
     //   const spaces = [0,1,2,3,4,5].map(i=> ' '.repeat(maxes[i]))

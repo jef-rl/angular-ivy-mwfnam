@@ -23,9 +23,23 @@ export function guid(len: number) {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  filter = null;
   data = order;
-  modelName='order'
-  
+  name='order'
+//   objectKeysList: any;
+//   objectGroupList: string[];
+//   objectDisplay: any;
+// objectModelList: any;
+// objectKeyedList: any;
+// modelRoot: any;
+//   constructor(){
+//     // rivate fb: FormBuilder) {
+//     this.objectModelList = getModel(this.modelRootName,order);
+//     this.objectKeyedList = groupBy(this.objectModelList,'key')
+//     this.objectGroupList = groupBy(this.objectModelList,'parent')
+//     this.modelRoot = this.objectGroupList[this.modelRootName]
+//     console.log(JSON.stringify(this.objectModelList))
+//   }
   
   // objectListSorted = this.objectKeysList.map(i=>{
   //   const [path,type] = (i.split('|'));

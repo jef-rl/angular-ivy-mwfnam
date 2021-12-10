@@ -1,6 +1,7 @@
 import { throwError } from 'rxjs';
 import { camelCase, groupBy, maxBy } from 'lodash';
 import { getKind } from './getKind';
+import { ModelEntries } from './data-model.service';
 
 
 const modelGroup = (parent, obj) => {
@@ -32,7 +33,7 @@ const modelGroup = (parent, obj) => {
   }, []);
 };
 
-const getModel = (modelRootName,modelPrototype) => {
+const getModel = (modelRootName,modelPrototype):ModelEntries[] => {
   if (!Array.isArray(modelPrototype) && typeof modelPrototype === 'object') {
     const model = modelGroup(modelRootName, modelPrototype);
     
@@ -44,7 +45,7 @@ const getModel = (modelRootName,modelPrototype) => {
     //   of: x[3],
     // }));
   } else {
-    return throwError(() => 'invalid object');
+    return [];
   }
 };
 export default getModel;

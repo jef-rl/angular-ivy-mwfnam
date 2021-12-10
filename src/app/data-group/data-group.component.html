@@ -1,11 +1,15 @@
-<!-- <div
-*ngFor="let field of fields?.controls; let fieldIndex = index;"
-[formGroupName]="fieldIndex"
-[style.gridRow]="field.value?.order+1"
-cdkDrag
-cdkDragLockAxis="y"
-cdkDragBoundary=".field-list"
-class="field row"
->
-<app-data-control></app-data-control>
-</div> -->
+<div>group - {{ _?.keyed?.key }}</div>
+<div>
+  <div *ngFor="let entry of _?.grouped; let fieldIndex = index">
+    <ng-container *ngIf="entry?.formType === 'control'"
+      ><app-data-control [key]="entry?.key"></app-data-control
+    ></ng-container>
+    <ng-container *ngIf="entry?.formType === 'array'"
+      ><app-data-array [key]="entry?.key"></app-data-array
+    ></ng-container>
+    <ng-container *ngIf="entry?.formType === 'group'"
+      ><app-data-group [key]="entry?.key"></app-data-group
+    ></ng-container>
+    <ng-container *ngIf="entry?.formType === 'error'">!!!</ng-container>
+  </div>
+</div>
